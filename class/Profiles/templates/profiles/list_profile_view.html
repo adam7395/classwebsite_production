@@ -1,0 +1,45 @@
+{% extends 'class/base.html' %}
+
+
+{% block head %}
+  <title> List view </title>
+{% endblock %}
+
+{% block content %}
+ {% for field in fields %}
+ <div id="main-container">
+   <div id="image-container">
+     <a href="{% url 'profile_detail_view' field.2 %}"><img src="{{MEDIA_URL}}{{field.0}}" width=100px height=100px style="float: left; margin:10px;"/></a>
+   </div>
+   <div id="name-container">
+     <h2> {{ field.1 }} </h2>
+   </div>
+ </div>
+{% endfor %}
+
+{% endblock %}
+
+<!-- Here below works
+
+  {% for field in fields %}
+    {{ field.0 }}
+    {{field.1}}
+  {% endfor %}
+  <div id="main-container">
+    <div id="image-container">
+      {% for image in images %}
+
+          <img src="{{MEDIA_URL}}{{image}}" width=100px height=100px style="display: block; margin:10px;"><a href="{% url 'profile_detail_view' 0 %}"/>
+
+      {% endfor %}
+    </div>
+    <div id="name-container">
+      {% for name in names %}
+
+        <div id="single-name-container" style="width:100px; height:100px">
+          <h3>{{ name }}</h3>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+-->

@@ -1,0 +1,15 @@
+{% extends 'class/base.html' %}
+
+{% block head %}
+  <title> Profile View </title>
+{% endblock %}
+
+{% block content %}
+  <img src="../../../../static/media/pic/scientist.jpg" alt="Still nothing" class="img-responsive"/>
+
+  <h1> MEDIA_URL {{ MEDIA_URL }}{{profile.pic}} </h1>
+
+  {% for key, val in profile.items %}
+    <h1> {{ val }} </h1>
+  {% endfor %}
+{% endblock %}

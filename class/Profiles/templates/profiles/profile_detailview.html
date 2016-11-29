@@ -1,0 +1,69 @@
+{% extends 'class/base.html' %}
+
+{% block head %}
+  <title> Profile View </title>
+{% endblock %}
+
+{% block content %}
+  <div>
+
+    <div >
+      <div id="profile-pic">
+          <img src="{{MEDIA_URL}}{{profile.facepic}}" alt="Still nothing" class="img-responsive" width=250px style="height: auto;"/>
+      </div><div id="profile-name">
+          {% if profile.firstname %}
+            <h2> {{ profile.firstname }} {{profile.lastname}}</h2>
+          {% else %}
+            <h2> {{ user.get_username }}</h2>
+          {% endif %}
+
+        </div>
+      </div>
+      <hr>
+
+      {% if profile.is_staff %}
+        <div id="staff-status">
+          <h4 class="profile-field-font" style="font-weight: bold; font-size: 3em;"> Instructor </h4>
+        </div><div id="staff-company">
+        {% if profile.institution %}
+          <h4 class="profile-field-font"><a href={{ profile.inst_url }}> {{ profile.institution }} </a></h4>
+        {% endif %}
+      </div>
+      <div id="staff-button">
+        {% if user.email == profile.email %}
+          <button type="button" class="btn btn-xs btn-success pull-right"><a style="color:#fff; vertical-align:middle;" href="{% url 'index' %}"> Edit Profile</a></button>
+        {% endif %}
+      </div>
+      {% else %}
+      <div id="staff-status">
+        <h4 class="profile-field-font" style="font-weight:bold;font-size: 3em;"> Student </h4>
+      </div><div id="staff-company">
+          <h4 class="profile-field-font"><a href="http://www.sdcity.edu/">San Diego City College</a></h4>
+        </div>
+
+        {% if user.email == profile.email %}
+          <div id="staff-button">
+            <button type="button" class="btn btn-xs btn-success pull-right"><a style="color:#fff; vertical-align:middle;" href="{% url 'edit_profile' %}"> Edit Profile</a></button>
+          </div>
+        {% endif %}
+      {% endif %}
+
+
+      <hr style="width: 100%; color:red; height:5px; background-color: red;">
+
+    </div>
+
+
+  <h4 class="profile-field-font" style="text-decoration: underline; font-weight: bold; font-size: 2em;"> Background:</h4>
+  <h4 class="profile-field-body-font"> {{ profile.background }} </h4>
+  <h4 class="profile-field-font" style="text-decoration: underline; font-weight: bold; font-size: 2em;"> Description:</h4>
+  <h4 class="profile-field-body-font"> {{ profile.description }} </h4>
+
+
+
+
+
+
+
+
+{% endblock %}

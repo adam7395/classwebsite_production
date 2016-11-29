@@ -1,0 +1,99 @@
+{% extends 'class/base.html' %}
+{% block head %}
+
+  <title> Bio 206 </title>
+{% endblock %}
+
+<!--{% load staticfiles %}-->
+{% block content %}
+
+
+  {% if not user.is_authenticated %}
+    <div id="myCarousel" class="carousel slide hidden-xs" data-ride="carousel" >
+    <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+
+      </ol>
+
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner" role="listbox">
+        <div class="item active">
+          <img class="carousel-img" src="{% static 'images/network.jpg' %}" alt="Chania">
+          <div class="carousel-caption">
+            <h3>Network</h3>
+            <p>Connecting scientists with industry</p>
+          </div>
+        </div>
+
+        <div class="item">
+          <img class="carousel-img" src="{% static 'images/DNA.jpg' %}" alt="Chania" height=100%>
+          <div class="carousel-caption">
+            <h3>Hands On: DNA</h3>
+            <p>Training scientists of tomorrow</p>
+          </div>
+        </div>
+
+        <div class="item">
+          <img src="{% static 'images/bits.jpg' %}" alt="Flower">
+          <div class="carousel-caption">
+            <h3>Hands On: Bioinformatics</h3>
+            <p>Training scientists of tomorrow</p>
+          </div>
+        </div>
+
+
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    </div>
+  {% else %}
+    <div class="announcement-container">
+      <h1> Coordinators Corner </h1>
+
+      {% if user.is_superuser %}
+      <form action="{% url 'index' %}" method = "post"> {% csrf_token %}
+        <div class="form-group">
+            <input type="text" class="form-control" name="title" id="user" maxlength="100" placeholder = "Announcement Heading...">
+
+            <textarea class="form-control announce-textarea" rows="5" name="announcement" placeholder="Make announcement..."></textarea>
+            <input type="submit" class="btn btn-success btn-sm" value="Submit">
+        </div>
+
+
+      </form>
+      {% endif %}
+
+
+      {% for announcement in announcements %}
+        {% if forloop.counter0|divisibleby:2 %}
+          <div class="checkered" >
+            <div class="announcment-title-container" style="background-color: rgba(0,0,0,.25); border-radius: 5px;">
+                <h2 id="announce-title">{{ announcement.title }} <small>{{ announcement.date }} </small></h4>
+            </div>
+
+              <h4 id="announce-text">{{ announcement }} </h4>
+            </div>
+        {% else %}
+          <div class="checkered" >
+            <div class="announcment-title-container" style="background-color: #f2dede; border-radius: 5px;">
+              <h2 id="announce-title">{{ announcement.title }} <small>{{ announcement.date }} </small></h4>
+            </div>
+                <h4 id="announce-text">{{ announcement }} </h4>
+
+          </div>
+        {% endif %}
+
+      {% endfor %}
+  {% endif %}
+{% endblock %}
