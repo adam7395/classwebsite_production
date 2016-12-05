@@ -27,6 +27,8 @@ urlpatterns = [
     url(r'^about/', views.about, name="about"),
     url(r'^contact/', include('contact.urls')),
     url(r'^profile/', include('Profiles.urls')),
+    url(r'^jobs/', views.jobsearch, name="jobsearch"),
+    url(r'^QandA/', include('QandA.urls')),
     url(r'^admin/', admin.site.urls),
 ]
 

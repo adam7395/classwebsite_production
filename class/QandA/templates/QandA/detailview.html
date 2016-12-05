@@ -1,0 +1,23 @@
+{% extends 'class/base.html' %}
+
+{% block content %}
+<div class="detailquestion-container">
+  <h1> {{ question }}</h1>
+  <ul>
+  {% for answer in answers %}
+    {% if forloop.counter0|divisibleby:2 %}
+      <li><h3><span style="background-color: rgba(0,0,0,.25); border-radius: 5px;"> {{ answer }}</span><small>{{answer.op}} </small></h3></li>
+    {% else %}
+      <li><h3><span style="background-color: #f2dede; border-radius: 5px;"> {{ answer }} </span><small> {{ answer.op }} </small></h3></li>
+    {% endif %}
+  {% endfor %}
+  <form method="post">{% csrf_token %}
+    <li>
+      <div class="form-group">
+        <textarea class="form-control" rows="2" id="answer" name="answer" placeholder="Your answer here...."></textarea>
+      </div>
+    </li>
+    <input type="submit" value="submit" class="btn btn-success">
+  </form>
+<div>
+{% endblock %}

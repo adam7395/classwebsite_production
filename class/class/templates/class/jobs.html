@@ -1,0 +1,76 @@
+{% extends 'class/base.html' %}
+
+{% block head %}
+  <title> Job Search </title>
+{% endblock %}
+
+
+{% block content %}
+  <div class="container jobsearch-input">
+    <h2>Search Jobs!</h2>
+
+    <form action="." method="post">{% csrf_token %}
+      <div class="search-container">
+        <div class="form-group jobfield">
+          <div class="col-md-5">
+            <label for="keyword">Keywords: (i.e. biotech, lab technichian, etc...)</label>
+            <input type="text" class="form-control" id="keyword" name="keywords">
+          </div>
+        </div>
+        <div class="form-group jobfield">
+          <div class="col-md-5">
+            <label for="city">City:</label>
+            <input type="text" class="form-control" id="city" name="city" value="san diego">
+          </div>
+        </div>
+        <div class="form-group jobfield">
+          <div class="col-md-2">
+            <label for="fromage">Days old:</label>
+            <input type="text" class="form-control" id="fromage" name="fromage" value="3">
+          </div>
+        </div>
+      </div>
+      <br><br><br><br>
+      <div id="submit-btn">
+        <input type="submit" class="btn btn-success" value="Find A Job!">
+      </div>
+
+    </form>
+  </div>
+
+  {% if search_terms %}
+    <h2> {{ search_terms.0}} jobs in {{ search_terms.1 }} in the last {{ search_terms.2 }} days:</h2>
+
+
+  {% if cb_list %}
+    <h4> From <a href=http://www.careerbuilder.com/ target="_blank">CareerBuilder </a> (page1 only)</h4>
+    <ul>
+    {% for job in cb_list %}
+      <li>
+        <h4 class="job-title"><a href={{job.1}} target="_blank"> {{ job.0 }}</a><h4>
+      </li>
+    {% endfor %}
+  {% else %}
+    <h4>Nothing from <a href=http://www.careerbuilder.com/ target="_blank">CareerBuilder </a></h4>
+  {% endif %}
+</ul><br><br>
+
+
+  {% if cl_list %}
+    <h4> From <a href=http://www.craigslist.com/ target="_blank">Craigslist </a></h4>
+    <ul>
+    {% for job in cl_list %}
+      <li>
+        <h4 class="job-title"><a href={{job.1}} target="_blank"> {{ job.0 }}</a><small> {{ job.2 }}</small><h4>
+      </li>
+    {% endfor %}
+  {% else %}
+    <h4>Nothing from <a href=http://www.craigslist.com/ target="_blank">Craigslist </a></h4>
+  {% endif %}
+  </ul>
+
+  {% endif %}
+
+
+
+{% endblock %}

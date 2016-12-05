@@ -51,18 +51,17 @@
               <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href=""> Student Resources <span class="caret"></span> </a>
                   <ul class="dropdown-menu">
-                    <li class="dropdown__item"><a href="#">Questions</a></li>
-                    <li class="dropdown__item"><a href="#">Calendar</a></li>
+                    <li class="dropdown__item"><a href="{% url 'question_list' %}">Questions</a></li>
                     <li class="dropdown__item"><a href="#">Class Material</a></li>
-                    <li class="dropdown__item"><a href="#">Job Search</a></li>
+                    <li class="dropdown__item"><a href="{% url 'jobsearch' %}">Job Search</a></li>
                   </ul>
 
               </li>
               <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href=""> Community <span class="caret"></span> </a>
                   <ul class="dropdown-menu">
-                    <li class="dropdown__item"><a href="{% url 'profile_list_view' 0 %}">Students</a></li>
-                    <li class="dropdown__item"><a href="{% url 'profile_list_view' 1 %}">Instructors</a></li>
+                    <li class="dropdown__item"><a href="{% url 'profile_list_view' 0 %}">Meet the Students</a></li>
+                    <li class="dropdown__item"><a href="{% url 'profile_list_view' 1 %}">Meet the Instructors</a></li>
 
                   </ul>
               </li>
@@ -98,7 +97,7 @@
     {% endblock %}
   </div>
   <div id="footer">
-    {% block footer %}
+    {% block js %}
     {% endblock %}
   </div>
 

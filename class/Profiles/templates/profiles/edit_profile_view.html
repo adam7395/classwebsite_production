@@ -1,5 +1,6 @@
 {% extends 'class/base.html' %}
 {% load crispy_forms_tags %}
+
 {% block head %}
   <title> Edit Profile </title>
 {% endblock %}
@@ -22,4 +23,20 @@
   </div>
 
 
+{% endblock %}
+
+
+{% block js %}
+<script>
+$('document').ready( function () {
+  $('#div_id_is_staff').click( function(){
+    if $( this ).prop('checked'){
+      $('.instructor-field').hide()
+    }
+    else{
+      $('.instructor-field').show()
+    }
+  });
+});
+</script>
 {% endblock %}

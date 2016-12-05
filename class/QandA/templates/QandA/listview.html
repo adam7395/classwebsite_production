@@ -1,0 +1,31 @@
+{% extends 'class/base.html' %}
+
+{% block head %}
+  <title> Questions </title>
+{% endblock %}
+
+{% block content %}
+
+<div class="question-container">
+  <form action="." id="newQ_form" method='post'>
+    {% csrf_token %}
+    <h1> Ask a new question </h1>
+    <textarea name="new_question" cols="100" rows-="20" form="newQ_form" placeholder="Enter question..."></textarea>
+    <!--  <input type="textarea" name="new_question" cols="50" rows="10">Ask a Question</textarea>-->
+    <input type="submit" value="submit">
+  </form>
+
+  <!-- Need to link the href to a detail view -->
+  {% for question in questions %}
+    {% if question.1 %}
+      <h3 style="font-weight: bold; font-color: blue;"><a href="{% url 'question_detail' question.0.id %}"> {{ question.0 }} </a><small> {{ question.0.op }}</small></h6></h3>
+    {% else %}
+      <h3 style="font-color: red;"><a href="{% url 'question_detail' question.0.id %}"> {{ question.0 }} </a><small> {{ question.0.op }}</small></h6></h3>
+    {% endif %}
+      <h6> {{ question.0.date }} <small> <a href="">edit  </a><a href="">  delete</small><h6>
+
+  {% endfor %}
+
+
+
+{% endblock %}

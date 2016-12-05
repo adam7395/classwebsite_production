@@ -1,4 +1,5 @@
 
+
 body{
 
   background: url("./../images/subtle_bg.jpg") no-repeat center center fixed;
@@ -209,5 +210,32 @@ hr {
 .announce-textarea{
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.jobsearch-input{
+  width: 90%;
+  margin: 0px auto;
+
+}
+
+
+}
+
+.search-container{
+  border: 10px solid red;
+  clear: both;
+
+}
+
+.jobfield{
+  display: inline;
+  clear: both;
+}
+
+
+#submit-btn{
+
+  width: 20%;
+  margin: 2px auto;
 
 }

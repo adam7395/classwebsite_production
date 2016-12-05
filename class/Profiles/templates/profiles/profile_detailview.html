@@ -31,7 +31,7 @@
       </div>
       <div id="staff-button">
         {% if user.email == profile.email %}
-          <button type="button" class="btn btn-xs btn-success pull-right"><a style="color:#fff; vertical-align:middle;" href="{% url 'index' %}"> Edit Profile</a></button>
+          <button type="button" class="btn btn-xs btn-success pull-right"><a style="color:#fff; vertical-align:middle;" href="{% url 'edit_profile' %}"> Edit Profile</a></button>
         {% endif %}
       </div>
       {% else %}
@@ -40,7 +40,7 @@
       </div><div id="staff-company">
           <h4 class="profile-field-font"><a href="http://www.sdcity.edu/">San Diego City College</a></h4>
         </div>
-
+      
         {% if user.email == profile.email %}
           <div id="staff-button">
             <button type="button" class="btn btn-xs btn-success pull-right"><a style="color:#fff; vertical-align:middle;" href="{% url 'edit_profile' %}"> Edit Profile</a></button>
